@@ -8,22 +8,23 @@ try {
 
 	$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-	$sql = "PRAGMA FOREIGN_KEYS = ON";
+	$sql = "PRAGMA foreign_keys = ON";
 	$db->query($sql);
 
-	$sql = "select * from products";
+	$sql = "select name from stores;";
 	$res = $db -> query($sql);
-
+	$data = $res -> fetchAll();
 
 	// cutting
 	$db = null;
 
-	foreach ($res as $row) {
-		print ($row["price"]);
-	}
+	$response["stores"] = $data;
+
+	header("Content-type: application/json; charset=UTF-8");
+	echo json_encode($response);
+
 } catch (Exception $e) {
 
-	echo $e->getMessage() . PHP_EOL;
+	//echo $e->getMessage() . PHP_EOL;
 
 }
-?>
