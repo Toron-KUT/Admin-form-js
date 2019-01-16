@@ -27,3 +27,4 @@ try {
   $store_data = null;
 
 }
+?>

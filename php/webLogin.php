@@ -40,3 +40,4 @@ and password = '$word'";
 	$resutl = null;
 
 }
+?>
