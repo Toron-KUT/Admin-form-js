@@ -79,7 +79,7 @@ try {
 	category_id integer primary key autoincrement,
 	name text,
 	createDate numeric,
-	updateDate numeric,
+	updateDate numeric
 	)";
 	$db->query($sql);
 
