@@ -21,11 +21,12 @@ try {
 	$response["stores"] = $data;
 
 	header("Content-type: application/json; charset=UTF-8");
-	echo json_encode($response);
+	echo json_encode($response, JSON_FORCE_OBJECT);
 
 } catch (Exception $e) {
 
 	//echo $e->getMessage() . PHP_EOL;
+	echo "false";
 
 }
 ?>

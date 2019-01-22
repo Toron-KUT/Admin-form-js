@@ -23,7 +23,7 @@ and password = '$word'";
 	// cutting
 	$db = null;
 
-	if($data["adminFlg"] == "1"){
+	if(strcmp($data["adminFlg"], "0") != 0){
 		$sql = "select store_id, name from stores
 		where user_id = $data["user_id"]";
 		$res = $db -> query($sql);

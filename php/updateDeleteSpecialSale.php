@@ -23,7 +23,7 @@ try {
 
 			// cutting
 			$db = null;
-			echo true;
+			echo "true";
 	} catch (Exception $e) {
 			$db -> rollback();
 			throw $e;
@@ -32,7 +32,7 @@ try {
 } catch (Exception $e) {
 
 	//echo $e->getMessage() . PHP_EOL;
-	echo false;
+	echo "false";
 
 }
 ?>

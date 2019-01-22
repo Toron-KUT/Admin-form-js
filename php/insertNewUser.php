@@ -7,7 +7,7 @@ try {
 	$word = $_POST["password"];
 	$waon = $_POST["waon"];
 	$security = $_POST["security"];
-	$point = $_POST["point"];
+	$point = 100;//$_POST["point"];
 
 	// connect
 	$db = new PDO("sqlite:\maruoka\maruoka_db");
@@ -19,30 +19,39 @@ try {
 	$sql = "PRAGMA foreign_keys = ON";
 	$db->query($sql);
 
-	$data = array('$login_id', '$name', '$ruby', '$word', '$waon', '$security', $point);
+	$sql = "select user_id from users where login_id = $login_id and password = $waon";
+	$res = $db -> quary($sql);
+	$data = $res -> fetchAll();
 
-	$db -> beginTransaction();
-	try {
-			$sql = "insert into users (login_id, name, ruby, password, waon,security, adminFlg,
-		     store_id, point, createDate, updateDate) values (
-			?, ?, ?, ?, ?, ?, ‘0’, NULL,  ?, current_timestamp, current_timestamp)";
-			$stmt = $db -> prepare($sql);
-			$stmt-> execute($data);
+	if (empty($data)) {
 
-			$db -> commit();
+		$data = array($login_id, $name, $ruby, $word, $waon, $security, $point);
 
-			// cutting
-			$db = null;
-			echo true;
-	} catch (Exception $e) {
-			$db -> rollback();
-			throw $e;
+		$db -> beginTransaction();
+		try {
+				$sql = "insert into users (login_id, name, ruby, password, waon,security, adminFlg,
+			     store_id, point, createDate, updateDate) values (
+				?, ?, ?, ?, ?, ?, ‘0’, NULL,  ?, current_timestamp, current_timestamp)";
+				$stmt = $db -> prepare($sql);
+				$stmt-> execute($data);
+
+				$db -> commit();
+
+				// cutting
+				$db = null;
+				echo "true";
+		} catch (Exception $e) {
+				$db -> rollback();
+				throw $e;
+		}
+	} else {
+		echo "false";
 	}
 
 } catch (Exception $e) {
 
 	//echo $e->getMessage() . PHP_EOL;
-	echo false;
+	echo "false";
 
 }
 ?>

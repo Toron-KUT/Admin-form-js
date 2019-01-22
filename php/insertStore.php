@@ -15,29 +15,38 @@ try {
 	$sql = "PRAGMA foreign_keys = ON";
 	$db->query($sql);
 
-	$data = array('$name', $user_id);
+	$sql = "select store_id from stores where name = $store";
+	$res = $db -> query();
+	$data = $res -> fetchAll();
 
-	$db -> beginTransaction();
-	try {
-			$sql = "insert into stores(name, user_id, createDate, updateDate) values (
-			?, ?, ?, current_timestamp, current_timestamp)";
-			$stmt = $db -> prepare($sql);
-			$stmt-> execute($data);
+	if (empty($data)) {
 
-			$db -> commit();
+		$data = array($name, $user_id);
 
-			// cutting
-			$db = null;
-			echo true;
-	} catch (Exception $e) {
-			$db -> rollback();
-			throw $e;
+		$db -> beginTransaction();
+		try {
+				$sql = "insert into stores(name, user_id, createDate, updateDate) values (
+				?, ?, ?, current_timestamp, current_timestamp)";
+				$stmt = $db -> prepare($sql);
+				$stmt-> execute($data);
+
+				$db -> commit();
+
+				// cutting
+				$db = null;
+				echo "true";
+		} catch (Exception $e) {
+				$db -> rollback();
+				throw $e;
+		}
+	} else {
+		echo "false";
 	}
 
 } catch (Exception $e) {
 
 	//echo $e->getMessage() . PHP_EOL;
-	echo false;
+	echo "false";
 
 }
 ?>
