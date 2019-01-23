@@ -19,11 +19,12 @@ try {
 	$sql = "PRAGMA foreign_keys = ON";
 	$db -> query($sql);
 
-	$sql = "select user_id from users where login_id = $login_id and password = $word";
+	$sql = "select user_id from users where login_id = '$login_id' and password = '$word'";
 	$res = $db -> query($sql);
 	$data = $res -> fetchAll();
 
 	if (empty($data)) {
+	
 
 		$data = array($login_id, $name, $ruby, $word, $waon, $security, $point);
 
@@ -31,7 +32,7 @@ try {
 		try {
 				$sql = "insert into users (login_id, name, ruby, password, waon, security, adminFlg,
 			     store_id, point, createDate, updateDate) values (
-				 ?, ?, ?, ?, ?, ?, ‘0’, NULL,  ?, current_timestamp, current_timestamp)";
+				 ?, ?, ?, ?, ?, ?, '0', NULL,  ?, current_timestamp, current_timestamp)";
 				$stmt = $db -> prepare($sql);
 				$stmt-> execute($data);
 
