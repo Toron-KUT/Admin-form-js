@@ -17,10 +17,10 @@ try {
 	$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 	$sql = "PRAGMA foreign_keys = ON";
-	$db->query($sql);
+	$db -> query($sql);
 
-	$sql = "select user_id from users where login_id = $login_id and password = $waon";
-	$res = $db -> quary($sql);
+	$sql = "select user_id from users where login_id = $login_id and password = $word";
+	$res = $db -> query($sql);
 	$data = $res -> fetchAll();
 
 	if (empty($data)) {
@@ -29,9 +29,9 @@ try {
 
 		$db -> beginTransaction();
 		try {
-				$sql = "insert into users (login_id, name, ruby, password, waon,security, adminFlg,
+				$sql = "insert into users (login_id, name, ruby, password, waon, security, adminFlg,
 			     store_id, point, createDate, updateDate) values (
-				?, ?, ?, ?, ?, ?, ‘0’, NULL,  ?, current_timestamp, current_timestamp)";
+				 ?, ?, ?, ?, ?, ?, ‘0’, NULL,  ?, current_timestamp, current_timestamp)";
 				$stmt = $db -> prepare($sql);
 				$stmt-> execute($data);
 
@@ -50,7 +50,7 @@ try {
 
 } catch (Exception $e) {
 
-	//echo $e->getMessage() . PHP_EOL;
+	echo $e->getMessage() . PHP_EOL;
 	echo "false";
 
 }
