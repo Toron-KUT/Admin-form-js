@@ -11,7 +11,7 @@ try {
 	$sql = "PRAGMA foreign_keys = ON";
 	$db->query($sql);
 
-	$sql = "select name from stores;";
+	$sql = "select store_id, name from stores;";
 	$res = $db -> query($sql);
 	$data = $res -> fetchAll();
 

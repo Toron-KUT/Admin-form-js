@@ -1,8 +1,10 @@
 <?php
 try {
 
-	$login_id = $_POST["login_id"]//jsondata;
-	$word = $_POST["password"]//jsondata;
+	$json_str = file_get_contents('php://input');
+	$json_data = json_decode($json_str, true);
+	$login_id = json_data["login_id"];
+	$word = json_data["password"];
 
 	// connect
 	$db = new PDO("sqlite:\maruoka\maruoka_db");
@@ -29,7 +31,7 @@ and password = '$word'";
 		$res = $db -> query($sql);
 		$store_data = $res -> fetchAll();
 
-		$result["info"] = json_encode($store_data)
+		$result["info"] = json_encode($store_data);
 	} else {
 		$result = null;
 	}

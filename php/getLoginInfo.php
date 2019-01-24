@@ -16,7 +16,7 @@ try {
 
 	$aql = "select user_id, login_id, name, points, store_id from users
 			where login_id = $login_id
-			and password = ‘$word’;";
+			and password = '$word';";
 	$res = $db -> query($sql);
 	$data = $res -> fetchAll();
 

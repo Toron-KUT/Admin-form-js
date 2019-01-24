@@ -11,7 +11,7 @@ try {
 	$sql = "PRAGMA FOREIGN_KEYS = ON";
 	$db->query($sql);
 
-	$sql = "create table buy(
+	$sql = "create table if not exists buy(
 	user_id integer,
 	product_id integer,
 	num integer,
@@ -24,7 +24,7 @@ try {
 	)";
 	$db->query($sql);
 
-	$sql = "create table users(
+	$sql = "create table if not exists users(
 	user_id integer primary key autoincrement,
 	login_id text,
 	name text,
@@ -41,7 +41,7 @@ try {
 	)";
 	$db->query($sql);
 
-	$sql = "create table products(
+	$sql = "create table if not exists products(
 	product_id integer primary key autoincrement,
 	name text,
 	ruby text,
@@ -54,7 +54,7 @@ try {
 	)";
 	$db->query($sql);
 
-	$sql = "create table hold(
+	$sql = "create table if not exists hold(
 	user_id integer,
 	product_id integer,
 	num integer,
@@ -65,7 +65,7 @@ try {
 	)";
 	$db->query($sql);
 
-	$sql = "create table stores(
+	$sql = "create table if not exists stores(
 	store_id integer primary key autoincrement,
 	name text,
 	user_id integer,
@@ -75,7 +75,7 @@ try {
 	)";
 	$db->query($sql);
 
-	$sql = "create table category(
+	$sql = "create table if not exists category(
 	category_id integer primary key autoincrement,
 	name text,
 	createDate numeric,
@@ -83,7 +83,7 @@ try {
 	)";
 	$db->query($sql);
 
-	$sql = "create table sp_price(
+	$sql = "create table if not exists sp_price(
 	product_id integer,
 	discntVal integer,
 	rateFlg text,

@@ -1,4 +1,3 @@
-// products, hold, category, soters
 <?php
 try {
 
@@ -20,15 +19,10 @@ try {
 	$hold_res = $db -> query($sql);
 	$hold_data = $hold_res -> fetchAll();
 
-	$sql = "select name from soters;";
-	$store_res = $db -> query($sql);
-	$store_data = $store_res -> fetchAll();
-
 	// cutting
 	$db = null;
 
-	$response["hold"] = $store_data;
-	$response["stores"] = $store_data;
+	$response["hold"] = $hold_data;
 
 	header("Content-type: application/json; charset=UTF-8");
 	echo json_encode($response, JSON_FORCE_OBJECT);
