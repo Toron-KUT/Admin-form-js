@@ -29,7 +29,7 @@ try {
 
       // cutting
     	$db = null;
-      echo "true";
+      $response = "true";
   } catch (Exception $e) {
       $db -> roolback();
       throw $e;
@@ -41,7 +41,7 @@ try {
 } catch (Exception $e) {
 
 	//echo $e->getMessage() . PHP_EOL;
-	echo "false";
+	$response = "false";
 
 }
 ?>

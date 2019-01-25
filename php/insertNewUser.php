@@ -7,7 +7,7 @@ try {
 	$word = $_POST["password"];
 	$waon = $_POST["waon"];
 	$security = $_POST["security"];
-	$point = 100;//$_POST["point"];
+	$point = 100; //$_POST["point"]; 実際はマルナカの方から値を取得する
 
 	// connect
 	$db = new PDO("sqlite:\maruoka\maruoka_db");
@@ -24,7 +24,7 @@ try {
 	$data = $res -> fetchAll();
 
 	if (empty($data)) {
-	
+
 
 		$data = array($login_id, $name, $ruby, $word, $waon, $security, $point);
 

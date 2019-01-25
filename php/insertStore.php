@@ -34,19 +34,19 @@ try {
 
 				// cutting
 				$db = null;
-				echo "true";
+				$response = "true";
 		} catch (Exception $e) {
 				$db -> rollback();
 				throw $e;
 		}
 	} else {
-		echo "false";
+		$response = "false";
 	}
 
 } catch (Exception $e) {
 
 	//echo $e->getMessage() . PHP_EOL;
-	echo "false";
+	$response = "false";
 
 }
 ?>
