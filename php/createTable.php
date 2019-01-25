@@ -20,6 +20,8 @@ try {
 	createDate numeric,
 	updateDate numeric,
 	primary key(user_id, product_id, createDate),
+	foreign key(user_id) references users,
+	foreign key(product_id) references products,
 	foreign key(store_id) references stores
 	)";
 	$db->query($sql);
