@@ -50,7 +50,7 @@ try {
 	password text,
 	adminFlg text,
 	createDate numeric,
-	updateDate numeric,
+	updateDate numeric
 	)";
 	$db->query($sql);
 

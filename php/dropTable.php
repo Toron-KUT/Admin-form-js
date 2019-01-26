@@ -8,8 +8,8 @@ try {
 
 	$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-	$sql = "PRAGMA FOREIGN_KEYS = ON";
-	$db->query($sql);
+	//$sql = "PRAGMA FOREIGN_KEYS = ON";
+	//$db->query($sql);
 
 	$sql = "drop table if exists buy";
 	$db->query($sql);
@@ -29,7 +29,7 @@ try {
 	$sql = "drop table if exists stores";
 	$db->query($sql);
 
-	$sql = "drop table if existss category";
+	$sql = "drop table if exists category";
 	$db->query($sql);
 
 	$sql = "drop table if exists sp_price";
