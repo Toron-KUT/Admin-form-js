@@ -4,7 +4,7 @@ try {
 	$json_str = file_get_contents('php://input');
 	$json_data = json_decode($json_str, true);
 	$name = $json_data["name"];
-	$user_id = $json_data["user_id"];
+	$clerk_id = $json_data["clerk_id"];
 
 	// connect
 	$db = new PDO("sqlite:\maruoka\maruoka_db");
@@ -22,11 +22,11 @@ try {
 
 	if (empty($d)) {
 
-		$data = array($name, $user_id);
+		$data = array($name, $clerk_id);
 
 		$db -> beginTransaction();
 		try {
-				$sql = "insert into stores(name, user_id, createDate, updateDate) values (
+				$sql = "insert into stores(name, clerk_id, createDate, updateDate) values (
 				?, ?, current_timestamp, current_timestamp)";
 				$stmt = $db -> prepare($sql);
 				$stmt-> execute($data);
