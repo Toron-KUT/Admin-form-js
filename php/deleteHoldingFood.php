@@ -22,7 +22,7 @@ try {
 
 	$db -> beginTransaction();
 	try {
-			$sql =	"delete * from hold
+			$sql =	"delete from hold
 		where user_id = $user_id
 		and product_id = $data["product_id"]
 		and createDate = $createDate";
