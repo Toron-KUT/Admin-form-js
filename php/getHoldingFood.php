@@ -4,7 +4,7 @@ try {
 	$user_id = $_POST["user_id"];// jsondata;
 
 	// connect
-	$db = new PDO("sqlite:~/maruoka_db");
+	$db = new PDO("sqlite:\maruoka\maruoka_db");
 
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -25,11 +25,11 @@ try {
 	$response["hold"] = $hold_data;
 
 	header("Content-type: application/json; charset=UTF-8");
-	echo json_encode($response, JSON_FORCE_OBJECT);
+	echo json_encode($response);
 
 } catch (Exception $e) {
 
-	//echo $e->getMessage() . PHP_EOL;
+	echo $e->getMessage() . PHP_EOL;
 	echo "false";
 
 }
