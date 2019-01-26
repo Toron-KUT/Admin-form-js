@@ -177,15 +177,16 @@ try {
         				$stmt-> execute($row);
             }
 
-            $sql = "select user_id, a.product_id, num from buy a, product b where a.product_id = b.product_id and category_id <> '11'";
+            $sql = "select user_id, a.product_id, num from buy a, products b where a.product_id = b.product_id and category_id <> '11'";
             $res = $db -> query($sql);
             $hold_data = $res -> fetchAll();
 
             $sql = "insert into hold (user_id, product_id, num, createDate, updateDate) values (
     				 ?, ?, ?, $time, $time)";
              foreach ($hold_data as $row) {
+               $data = array ($row["user_id"], $row["product_id"], $row["num"]);
          				$stmt = $db -> prepare($sql);
-         				$stmt-> execute($row);
+         				$stmt-> execute($data);
              }
 
              $sql = "insert into sp_price (product_id, discntVal, rateFlg, soldOutFlg, store_id, createDate, updateDate) values (
