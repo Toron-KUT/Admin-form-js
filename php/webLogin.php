@@ -31,7 +31,7 @@ and password = '$word'";
 
 		$response["flg"] = $data["adminFlg"];
 		$response["info"] = $store_data;
-		$result = json_encode($response)
+		$result = json_encode($response);
 		echo $result;
 	} else {
 		$result = null;
