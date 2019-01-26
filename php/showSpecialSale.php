@@ -11,8 +11,8 @@ try {
 	$sql = "PRAGMA foreign_keys = ON";
 	$db->query($sql);
 
-	$sql = "select product_id, name, price from products
-			where bargainFlg = '1'";
+	$sql = "select category_id, name, price from products
+			where bargainFlg = '1'";//product_id - category_id
 	$res = $db -> query($sql);
 	$data = $res -> fetchAll();
 
@@ -25,7 +25,7 @@ try {
 
 } catch (Exception $e) {
 
-	//echo $e->getMessage() . PHP_EOL;
+	echo $e->getMessage() . PHP_EOL;
   $spSale_data = null;
 
 }
