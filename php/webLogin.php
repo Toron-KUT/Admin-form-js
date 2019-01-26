@@ -26,8 +26,9 @@ and password = '$word'";
 	$db = null;
 
 	if(strcmp($data["adminFlg"], "0") != 0){
+		$clerk_id = $data["clerk_id"];
 		$sql = "select store_id from stores
-		where user_id = $data["user_id"]";
+		where clerk_id = $clerk_id";
 		$res = $db -> query($sql);
 		$store_data = $res -> fetchAll();
 
