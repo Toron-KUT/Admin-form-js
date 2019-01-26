@@ -21,9 +21,9 @@ try {
   $sql = "select product_id from products
   where name = '$product_name'";
   $res = $db -> query($sql);
-	$data = $res -> fetch();
+	$d = $res -> fetch();
 
-	$data = array($data["product_id"], $discntVal, $rateFlg, $store_id);
+	$data = array($d["product_id"], $discntVal, $rateFlg, $store_id);
 
 	$db -> beginTransaction();
 	try {

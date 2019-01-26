@@ -19,7 +19,7 @@ try {
 	$sql = "PRAGMA foreign_keys = ON";
 	$db -> query($sql);
 
-	$sql = "select user_id from users where login_id = '$login_id' and password = '$word'";
+	$sql = "select user_id from users where login_id = '$login_id'";
 	$res = $db -> query($sql);
 	$data = $res -> fetchAll();
 

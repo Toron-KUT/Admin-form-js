@@ -21,12 +21,16 @@ try {
 
 	// cutting
 	$db = null;
+	if (!empty($data)){
 
-	$response["users"] = $data;
+			$response["users"] = $data;
 
+			header("Content-type: application/json; charset=UTF-8");
+			echo json_encode($response);
 
-	header("Content-type: application/json; charset=UTF-8");
-	echo json_encode($response);
+	} else {
+			echo "false";
+	}
 
 } catch (Exception $e) {
 

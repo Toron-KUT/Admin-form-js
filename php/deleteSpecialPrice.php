@@ -23,7 +23,7 @@ try {
 
   $db -> beginTransaction();
 	try {
-    	$sql =	"delete * from sp_price
+    	$sql =	"delete from sp_price
     where product_id = $data["product_id"] and store_id = $store_id";
     	$db -> query($sql);
 
