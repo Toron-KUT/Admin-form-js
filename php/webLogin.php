@@ -16,7 +16,7 @@ try {
 	$sql = "PRAGMA foreign_keys = ON";
 	$db->query($sql);
 
-	$sql = "select user_id, adminFlg from users
+	$sql = "select clerk_id, adminFlg from clerks
 where login_id = '$login_id'
 and password = '$word'";
 	$res = $db -> query($sql);
@@ -26,11 +26,12 @@ and password = '$word'";
 	$db = null;
 
 	if(strcmp($data["adminFlg"], "0") != 0){
-		$sql = "select store_id, name from stores
+		$sql = "select store_id from stores
 		where user_id = $data["user_id"]";
 		$res = $db -> query($sql);
 		$store_data = $res -> fetchAll();
 
+		$result["flg"] = json_encode($data["adminFlg"]);
 		$result["info"] = json_encode($store_data);
 	} else {
 		$result = null;
