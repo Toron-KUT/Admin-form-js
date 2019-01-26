@@ -1,9 +1,11 @@
 <?php
 try {
 
-	$store_id = $_POST["store_id"];
-	$name = $_POST["name"];
-	$user_id = $_POST["user_id"];
+	$json_str = file_get_contents('php://input');
+	$json_data = json_decode($json_str, true);
+	$store_id = $json_data["store_id"];
+	$name = $json_data["name"];
+	$user_id = $json_data["user_id"];
 
 	// connect
 	$db = new PDO("sqlite:\maruoka\maruoka_db");
@@ -15,8 +17,8 @@ try {
 	$sql = "PRAGMA foreign_keys = ON";
 	$db->query($sql);
 
-	$sql = "select store_id from stores where name = $store";
-	$res = $db -> query();
+	$sql = "select store_id from stores where name = '$name'";
+	$res = $db -> query($sql);
 	$data = $res -> fetchAll();
 
 	if (empty($data)) {
@@ -26,7 +28,7 @@ try {
 		$db -> beginTransaction();
 		try {
 				$sql = "insert into stores(name, user_id, createDate, updateDate) values (
-				?, ?, ?, current_timestamp, current_timestamp)";
+				?, ?, current_timestamp, current_timestamp)";
 				$stmt = $db -> prepare($sql);
 				$stmt-> execute($data);
 

@@ -1,7 +1,9 @@
 <?php
 try {
 
-  $store_id = $_POST["store_id"];
+  $json_str = file_get_contents('php://input');
+	$json_data = json_decode($json_str, true);
+  $store_id = $json_data["store_id"];
 
 	// connect
 	$db = new PDO("sqlite:\maruoka\maruoka_db");

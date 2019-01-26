@@ -3,8 +3,8 @@ try {
 
 	$json_str = file_get_contents('php://input');
 	$json_data = json_decode($json_str, true);
-	$login_id = json_data["login_id"];
-	$word = json_data["password"];
+	$login_id = $json_data["login_id"];
+	$word = $json_data["password"];
 
 	// connect
 	$db = new PDO("sqlite:\maruoka\maruoka_db");

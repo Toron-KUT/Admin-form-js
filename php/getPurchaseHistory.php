@@ -25,7 +25,7 @@ try {
 	$response["purchase"] = $data;
 
 	header("Content-type: application/json; charset=UTF-8");
-	echo json_encode($response, JSON_FORCE_OBJECT);
+	echo json_encode($response);
 
 } catch (Exception $e) {
 

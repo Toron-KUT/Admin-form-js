@@ -1,10 +1,12 @@
 <?php
 try {
 
-  $product_name = $_POST["product_name"];
-	$discntVal = $_POST["discntVal"];
-  $rateFlg = $_POST["rateFlg"];
-	$store_id = $_POST["store_id"];
+  $json_str = file_get_contents('php://input');
+	$json_data = json_decode($json_str, true);
+  $product_name = $json_data["product_name"];
+	$discntVal = $json_data["discntVal"];
+  $rateFlg = $json_data["rateFlg"];
+	$store_id = $json_data["store_id"];
 
 	// connect
 	$db = new PDO("sqlite:\maruoka\maruoka_db");
