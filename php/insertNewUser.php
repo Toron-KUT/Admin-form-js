@@ -30,9 +30,9 @@ try {
 
 		$db -> beginTransaction();
 		try {
-				$sql = "insert into users (login_id, name, ruby, password, waon, security, adminFlg,
+				$sql = "insert into users (login_id, name, ruby, password, waon, security,
 			     store_id, point, createDate, updateDate) values (
-				 ?, ?, ?, ?, ?, ?, '0', NULL,  ?, current_timestamp, current_timestamp)";
+				 ?, ?, ?, ?, ?, ?, NULL, ?, current_timestamp, current_timestamp)";
 				$stmt = $db -> prepare($sql);
 				$stmt-> execute($data);
 
