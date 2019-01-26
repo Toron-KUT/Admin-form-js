@@ -34,12 +34,23 @@ try {
 	password text,
 	waon text,
 	security text,
-	adminFlg text,
 	store_id integer,
 	point integer,
 	createDate numeric,
 	updateDate numeric,
 	foreign key(store_id) references stores
+	)";
+	$db->query($sql);
+
+	$sql = "create table if not exists clerks(
+	clerk_id integer primary key autoincrement,
+	login_id text,
+	name text,
+	ruby text,
+	password text,
+	adminFlg text,
+	createDate numeric,
+	updateDate numeric,
 	)";
 	$db->query($sql);
 
@@ -70,10 +81,10 @@ try {
 	$sql = "create table if not exists stores(
 	store_id integer primary key autoincrement,
 	name text,
-	user_id integer,
+	clerk_id integer,
 	createDate numeric,
 	updateDate numeric,
-	foreign key(user_id) references users
+	foreign key(clerk_id) references clerks
 	)";
 	$db->query($sql);
 
