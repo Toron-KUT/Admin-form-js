@@ -133,12 +133,6 @@ try {
 
     $db -> beginTransaction();
 		try {
-				$sql = "insert into stores(name, user_id, createDate, updateDate) values (
-				?, ?, $time, $time)";
-        foreach ($store_data as $row) {
-    				$stmt = $db -> prepare($sql);
-    				$stmt-> execute($row);
-        }
 
         $sql = "insert into category(name, createDate, updateDate) values (
 				?, $time, $time)";
@@ -147,20 +141,27 @@ try {
     				$stmt-> execute($row);
         }
 
-        $sql = "insert into users (login_id, name, ruby, password, waon, security,
-			     store_id, point, createDate, updateDate) values (
-				 ?, ?, ?, ?, ?, ?, ?, ?, $time, $time)";
-         foreach ($user_data as $row) {
-     				$stmt = $db -> prepare($sql);
-     				$stmt-> execute($row);
-         }
-
          $sql = "insert into clerks (login_id, name, ruby, password, adminFlg, createDate, updateDate) values (
  				 ?, ?, ?, ?, ?, $time, $time)";
           foreach ($clerk_data as $row) {
       				$stmt = $db -> prepare($sql);
       				$stmt-> execute($row);
           }
+
+          $sql = "insert into stores(name, clerk_id, createDate, updateDate) values (
+  				?, ?, $time, $time)";
+          foreach ($store_data as $row) {
+      				$stmt = $db -> prepare($sql);
+      				$stmt-> execute($row);
+          }
+
+          $sql = "insert into users (login_id, name, ruby, password, waon, security,
+  			     store_id, point, createDate, updateDate) values (
+  				 ?, ?, ?, ?, ?, ?, ?, ?, $time, $time)";
+           foreach ($user_data as $row) {
+       				$stmt = $db -> prepare($sql);
+       				$stmt-> execute($row);
+           }
 
           $sql = "insert into products (name, ruby, price, category_id, bargainFlg, createDate, updateDate) values (
   				 ?, ?, ?, ?, ?, $time, $time)";
@@ -176,7 +177,7 @@ try {
         				$stmt-> execute($row);
             }
 
-            $sql = "select user_id, a.product_id, num from buy a, product b where a.product_id = b.product_id and category_id <> "11"";
+            $sql = "select user_id, a.product_id, num from buy a, product b where a.product_id = b.product_id and category_id <> '11'";
             $res = $db -> query($sql);
             $hold_data = $res -> fetchAll();
 
