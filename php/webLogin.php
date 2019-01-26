@@ -27,10 +27,10 @@ and password = '$word'";
 		$sql = "select store_id from stores
 		where clerk_id = $clerk_id";
 		$res = $db -> query($sql);
-		$store_data = $res -> fetchAll();
+		$store_data = $res -> fetch();
 
 		$response["flg"] = $data["adminFlg"];
-		$response["info"] = $store_data;
+		$response["info"] = $store_data["store_id"];
 		$result = json_encode($response);
 		echo $result;
 	} else {
