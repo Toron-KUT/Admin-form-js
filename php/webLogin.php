@@ -22,26 +22,30 @@ and password = '$word'";
 	$res = $db -> query($sql);
 	$data = $res -> fetch();
 
-	// cutting
-	$db = null;
-
-	if(strcmp($data["adminFlg"], "0") != 0){
+	if(!empty($data) && strcmp($data["adminFlg"], "0") != 0){
 		$clerk_id = $data["clerk_id"];
 		$sql = "select store_id from stores
 		where clerk_id = $clerk_id";
 		$res = $db -> query($sql);
 		$store_data = $res -> fetchAll();
 
-		$result["flg"] = json_encode($data["adminFlg"]);
-		$result["info"] = json_encode($store_data);
+		$response["flg"] = $data["adminFlg"];
+		$response["info"] = $store_data;
+		$result = json_encode($response)
+		echo $result;
 	} else {
 		$result = null;
+		echo $result;
 	}
+
+	// cutting
+	$db = null;
 
 } catch (Exception $e) {
 
 	//echo $e->getMessage() . PHP_EOL;
 	$resutl = null;
+	echo $reslt;
 
 }
 ?>
