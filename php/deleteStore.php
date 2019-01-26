@@ -4,7 +4,7 @@ try {
 	$json_str = file_get_contents('php://input');
 	$json_data = json_decode($json_str, true);
 	$store_id = $json_data["store_id"];//jsondata;
-	$user_id = $json_data["user_id"];//jsondata;
+	$clerk_id = $json_data["clerk_id"];//jsondata;
 
 	// connect
 	$db = new PDO("sqlite:\maruoka\maruoka_db");
@@ -18,12 +18,11 @@ try {
 
 	$db -> beginTransaction();
 	try {
-			$sql =	"delete * from stores
+			$sql =	"delete from stores
 		where store_id = $store_id";
 			$db -> query($sql);
 
-			$sql =	"delete * from users
-		where user_id = $user_id";
+			$sql =	"update clerks set adminFlg = '0', updateDate = current_timestamp where clerk_id = $clerk_id";
 			$db -> query($sql);
 
 			$db -> commit();

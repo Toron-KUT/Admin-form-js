@@ -4,10 +4,10 @@ try {
 // 2store_id, 3name, 1old_user_id, 4new_user_id
 	$json_str = file_get_contents('php://input');
 	$json_data = json_decode($json_str, true);
-	$old_user_id = $json_data["old_user_id"];
+	$old_clerk_id = $json_data["old_user_id"];
 	$store_id = $json_data["store_id"];//jsondata;
 	$name = $json_data["name"];// jsondata;
-  $new_user_id = $json_data["new_user_id"];
+  $new_clerk_id = $json_data["new_user_id"];
 
 	// connect
 	$db = new PDO("sqlite:\maruoka\maruoka_db");
@@ -21,17 +21,17 @@ try {
 
 	$db -> beginTransaction();
 	try {
-			$sql =	"update stores set name = '$name', user_id = $user_id, updateDate = current_timestamp
+			$sql =	"update stores set name = '$name', updateDate = current_timestamp
 					where store_id = $store_id";
 			$db -> query($sql);
 
-			if (strcmp($old_user_id, $new_user_id) != 0) {
-		      $sql =	"update users set adminFlg = '0', updateDate = current_timestamp
-							where user_id = $old_user_id";
+			if (strcmp($old_clerk_id, $new_clerk_id) != 0) {
+		      $sql =	"update clerks set adminFlg = '0', updateDate = current_timestamp
+							where clerk_id = $old_clerk_id";
 					$db -> query($sql);
 
-		      $sql =	"update users set adminFlg = '1', updateDate = current_timestamp
-							where user_id = $new_user_id";
+		      $sql =	"update clerks set adminFlg = '1', updateDate = current_timestamp
+							where clerk_id = $new_clerk_id";
 					$db -> query($sql);
 		}
 
