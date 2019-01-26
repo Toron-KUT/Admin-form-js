@@ -3,7 +3,6 @@ try {
 
 	$json_str = file_get_contents('php://input');
 	$json_data = json_decode($json_str, true);
-	$store_id = $json_data["store_id"];
 	$name = $json_data["name"];
 	$user_id = $json_data["user_id"];
 
@@ -19,9 +18,9 @@ try {
 
 	$sql = "select store_id from stores where name = '$name'";
 	$res = $db -> query($sql);
-	$data = $res -> fetchAll();
+	$d = $res -> fetchAll();
 
-	if (empty($data)) {
+	if (empty($d)) {
 
 		$data = array($name, $user_id);
 
@@ -37,18 +36,20 @@ try {
 				// cutting
 				$db = null;
 				$response = "true";
+				echo $response;
 		} catch (Exception $e) {
 				$db -> rollback();
 				throw $e;
 		}
 	} else {
 		$response = "false";
+		echo $response;
 	}
 
 } catch (Exception $e) {
 
-	//echo $e->getMessage() . PHP_EOL;
+	echo $e->getMessage() . PHP_EOL;
 	$response = "false";
-
+echo $response;
 }
 ?>
