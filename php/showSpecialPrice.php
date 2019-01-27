@@ -15,7 +15,7 @@ try {
 	$sql = "PRAGMA foreign_keys = ON";
 	$db->query($sql);
 
-	$sql = "select a.product_id, b.name, b.price, a.discntVal, rateFlg from sp_price a, products b
+	$sql = "select b.category_id, b.name, b.price, a.discntVal, rateFlg from sp_price a, products b
 			where a.product_id = b.product_id
       and a.store_id = $store_id";
 	$res = $db -> query($sql);
@@ -27,11 +27,13 @@ try {
 	$response["sp_price"] = $data;
 
 	$spPrice_data = json_encode($response);
+  echo $spPrice_data;
 
 } catch (Exception $e) {
 
 	//echo $e->getMessage() . PHP_EOL;
   $spPrice_data = null;
+  echo $spPrice_data;
 
 }
 ?>
