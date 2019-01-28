@@ -21,7 +21,8 @@ try {
 
 	$db -> beginTransaction();
 	try {
-			$sql =	"update users set store_id = $store_data["store_id"], updateDate = current_timestamp
+			$store_id = $store_data["store_id"];
+			$sql =	"update users set store_id = $store_id, updateDate = current_timestamp
 					where user_id = $user_id";
 			$db -> query($sql);
 

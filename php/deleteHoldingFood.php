@@ -22,9 +22,10 @@ try {
 
 	$db -> beginTransaction();
 	try {
+			$product_id = $data["product_id"];
 			$sql =	"delete from hold
 		where user_id = $user_id
-		and product_id = $data["product_id"]
+		and product_id = $product_id;
 		and createDate = $createDate";
 			$db -> query($sql);
 

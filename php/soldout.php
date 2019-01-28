@@ -23,8 +23,9 @@ try {
 
 	$db -> beginTransaction();
 	try {
+			$product_id $data["product_id"];
 			$sql =	"update sp_price set soldOutFlg = '1', updateDate = current_timestamp
-					where product_id = $data["product_id"] and store_id = $store_id;";
+					where product_id = $product_id and store_id = $store_id;";
 			$db -> query($sql);
 
 			$db -> commit();

@@ -15,7 +15,7 @@ try {
 
 	$sql = "select b.name, a.num, a.createDate from hold a, products b
 			where a.product_id = b.product_id
-			and a.user_id = '$user_id';";
+			and a.user_id = $user_id;";
 	$hold_res = $db -> query($sql);
 	$hold_data = $hold_res -> fetchAll();
 
