@@ -34,7 +34,7 @@ try {
     	$db = null;
       $response = "true";
   } catch (Exception $e) {
-      $db -> roolback();
+      $db -> rollback();
       throw $e;
   }
 
