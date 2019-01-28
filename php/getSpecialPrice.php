@@ -4,7 +4,7 @@ try {
 	$store_id = $_POST["store_id"];
 
 	// connect
-	$db = new PDO("sqlite:\maruoka\maruoka_db");
+	$db = new PDO("sqlite:../../maruoka_db");
 
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
