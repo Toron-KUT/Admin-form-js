@@ -3,8 +3,8 @@ try {
 
 	$json_str = file_get_contents('php://input');
 	$json_data = json_decode($json_str, true);
-	$product_name = $json_data["product_name"]//jsondata;
-	$store_id = $json_data["store_id"]// jsondata;
+	$product_name = $json_data["product_name"];//jsondata;
+	$store_id = $json_data["store_id"];// jsondata;
 
 	// connect
 	$db = new PDO("sqlite:../../maruoka_db");
