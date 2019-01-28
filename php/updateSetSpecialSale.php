@@ -24,7 +24,7 @@ try {
 	try {
 			$product_id = $data["product_id"];
 			$sql =	"update products set bargainFlg = '1', updateDate = current_timestamp
-					where product_id = ‘$product_id’";
+					where product_id = $product_id";
 			$db -> query($sql);
 
 			$db -> commit();
