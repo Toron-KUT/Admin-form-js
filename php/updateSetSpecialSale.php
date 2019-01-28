@@ -3,7 +3,7 @@ try {
 
 	$json_str = file_get_contents('php://input');
 	$json_data = json_decode($json_str, true);
-	$product_id = $json_data["product_id"];//jsondata;
+	$product_name = $json_data["product_name"];//jsondata;
 
 	// connect
 	$db = new PDO("sqlite:../../maruoka_db");
@@ -15,8 +15,14 @@ try {
 	$sql = "PRAGMA foreign_keys = ON";
 	$db->query($sql);
 
+	$sql = "select product_id from products
+  where name = '$product_name'";
+  $res = $db -> query($sql);
+  $data = $res -> fetch();
+
 	$db -> beginTransaction();
 	try {
+			$product_id = $data["product_id"];
 			$sql =	"update products set bargainFlg = '1', updateDate = current_timestamp
 					where product_id = ‘$product_id’";
 			$db -> query($sql);
