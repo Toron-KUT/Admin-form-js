@@ -40,6 +40,7 @@ try {
 			// cutting
 			$db = null;
 			$response = "true";
+			echo $response;
 	} catch (Exception $e) {
 			$db -> rollback();
 			throw $e;
@@ -49,6 +50,7 @@ try {
 
 	//echo $e->getMessage() . PHP_EOL;
 	$response = "false";
+	echo $response;
 
 }
 ?>
