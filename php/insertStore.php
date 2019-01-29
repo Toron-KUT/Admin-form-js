@@ -18,9 +18,13 @@ try {
 
 	$sql = "select store_id from stores where name = '$name'";
 	$res = $db -> query($sql);
-	$d = $res -> fetchAll();
+	$d_check1 = $res -> fetchAll();
 
-	if (empty($d)) {
+	$sql = "select clerk_id from clerks where clerk_id = $clerk_id";
+	$res = $db -> query($sql);
+	$d_check2 = $res -> fetchAll();
+
+	if (empty($d_check1) && !empty($d_check2)) {
 
 		$data = array($name, $clerk_id);
 
