@@ -13,7 +13,7 @@ try {
 	$sql = "PRAGMA foreign_keys = ON";
 	$db->query($sql);
 
-	$sql = "select b.name, b.price, a.discntVal, rateFlg, c.name from sp_price a, products b, category c
+	$sql = "select b.name as product_name, b.price, a.discntVal, rateFlg, c.name as category_name from sp_price a, products b, category c
 			where a.product_id = b.product_id
 			and a.store_id = $store_id
 			and b.category_id = c.category_id";

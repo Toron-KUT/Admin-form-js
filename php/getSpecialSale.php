@@ -11,7 +11,7 @@ try {
 	$sql = "PRAGMA foreign_keys = ON";
 	$db->query($sql);
 
-	$sql = "select a.name, price, c.name from products a, category c
+	$sql = "select a.name as product_name, price, c.name as category_name from products a, category c
 			where bargainFlg = '1'
 			and a.category_id = c.category_id";
 	$res = $db -> query($sql);
