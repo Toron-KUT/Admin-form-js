@@ -1,8 +1,8 @@
 <?php
 try {
 
-	$user_id = $_POST["user_id"];//jsondata;
-	$num = $_POST["num"];// jsondata;
+	$user_id = $_POST["user_id"];
+	$num = $_POST["num"];
 
 	// connect
 	$db = new PDO("sqlite:../../maruoka_db");

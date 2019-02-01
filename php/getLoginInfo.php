@@ -1,8 +1,8 @@
 <?php
 try {
 
-	$login_id = $_POST["login_id"];// jsondata;
-	$word = $_POST["password"];//jsondata;
+	$login_id = $_POST["login_id"];
+	$word = $_POST["password"];
 	// connect
 	$db = new PDO("sqlite:../../maruoka_db");
 

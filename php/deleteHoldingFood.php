@@ -1,9 +1,9 @@
 <?php
 try {
 
-	$user_id = $_POST["user_id"];//jsondata;
-	$product_name = $_POST["product_name"];// jsondata;
-	$createDate = $_POST["createDate"];// jsondata;
+	$user_id = $_POST["user_id"];
+	$product_name = $_POST["product_name"];
+	$createDate = $_POST["createDate"];
 
 	// connect
 	$db = new PDO("sqlite:../../maruoka_db");
